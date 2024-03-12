@@ -1,0 +1,21 @@
+<!-- login.page.html -->
+<ion-header class="flex items-center justify-between">
+  <ion-toolbar>
+
+    <ion-img slot="start" class="ml-0 w-16 h-16" src="assets/images/ct.png" alt="" ></ion-img>
+
+  <ion-icon name="menu-sharp" class="text-black-500 text-4xl mr-3" slot="end"></ion-icon>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="ion-margin-bottom">
+    <ion-label class="ion-padding">Email</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-item class="ion-margin-bottom">
+    <ion-label class="ion-padding">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <ion-button  class="ion-margin-top" expand="block" (click)="login()">Login</ion-button>
+</ion-content>

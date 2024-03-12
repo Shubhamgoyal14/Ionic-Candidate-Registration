@@ -1,0 +1,154 @@
+<ion-header class="flex items-center justify-between">
+  <ion-toolbar>
+    <ion-img slot="start" class="ml-0 w-12 h-12" src="assets/images/ct.png"
+      alt></ion-img>
+    <ion-icon name="menu-sharp" class="text-black-500 text-4xl mr-3"
+      slot="end"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="ion-padding">
+    <h1 class="ion-text-center text-2xl">Registration Form</h1>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+      <ion-item class="mb-2" lines="none">
+        <ion-input required type="text" name="name" placeholder="Enter Your Name"
+          [(ngModel)]="name"
+          label="Name" labelPlacement="floating"
+          errorText="Name is required"
+          ngModel></ion-input>
+
+      </ion-item>
+      <ion-item class="mb-2" lines="none">
+
+        <ion-input required type="email" name="email" placeholder="Enter Email"
+          [(ngModel)]="email"
+          label="Email" labelPlacement="floating"
+          errorText="Invalid email"
+          ngModel
+          email></ion-input>
+
+      </ion-item>
+      <ion-item class="mb-2" lines="none">
+        <ion-input required type="tel" name="contactNumber"
+          placeholder="Enter Contact Number" [(ngModel)]="contactNumber"
+          label="Contact Number" labelPlacement="floating"
+          ngModel
+          pattern="[0-9]*"
+          minlength="10" maxlength="15"
+          errorText="Invalid contact number"></ion-input>
+
+      </ion-item>
+      <ion-item class="mb-2" lines="none">
+        <ion-input required type="text" name="caddress"
+          placeholder="Enter Your Current Address" [(ngModel)]="caddress"
+          label="Current Address" labelPlacement="floating"
+          errorText="Current address is required"
+          ngModel
+          caddress></ion-input>
+      </ion-item>
+      <ion-item class="mb-2" lines="none">
+        <ion-input required type="text" name="paddress"
+          placeholder="Enter Your Permanent Address" [(ngModel)]="paddress"
+          label="Permanent Address" labelPlacement="floating"
+          errorText="Permanent address is required"
+          ngModel
+          paddress></ion-input>
+      </ion-item>
+      <ion-item class="mb-2" lines="none">
+
+        <ion-input required type="text" name="qualification"
+          placeholder="Enter Your Qualification" [(ngModel)]="qualification"
+          label="Qualification" labelPlacement="floating"
+          errorText="Qualification is required"
+          ngModel
+          qualification></ion-input>
+
+      </ion-item>
+      <ion-item class="mb-2" lines="none">
+        <ion-input required errorText="Skills are required" type="text" name="skills" placeholder="Enter Your Skills" [(ngModel)]="skills" label="Skills" labelPlacement="floating" errorText="Skills required" (ionInput)="filterSkills($event)" ngModel skills></ion-input>
+      </ion-item>
+      <div *ngIf="filteredSkills.length > 0" class="ion-padding">
+        <div class="skills-container">
+          <ion-list lines="none">
+            <ion-item *ngFor="let skill of filteredSkills" (click)="selectSkill(skill)" class="skill">
+              {{ skill }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+
+
+
+      <ion-item class="mb-2" lines="none">
+        <ion-label position="floating">Do you have previous
+          experience?</ion-label>
+        <ion-select [(ngModel)]="hasExperience" name="hasExperience"
+          (ionChange)="toggleExperienceFields()">
+          <ion-select-option value="yes">Yes</ion-select-option>
+          <ion-select-option value="no">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="hasExperience === 'yes'">
+        <!-- Additional fields for experience -->
+        <ion-item class="mb-2" lines="none">
+          <ion-label position="floating">Experience</ion-label>
+          <ion-input type="text" name="experience"
+            placeholder="Enter Your Experience"
+            [(ngModel)]="experience"></ion-input>
+        </ion-item>
+        <ion-item class="mb-2" lines="none">
+          <ion-label position="floating">Previous Company Name</ion-label>
+          <ion-input type="text" name="companyName"
+            placeholder="Enter Previous Company Name"
+            [(ngModel)]="companyName"></ion-input>
+        </ion-item>
+        <ion-item class="mb-2" lines="none">
+          <ion-label position="floating">Job Profile</ion-label>
+          <ion-input type="text" name="role" placeholder="Enter Your Role"
+            [(ngModel)]="profile"></ion-input>
+        </ion-item>
+      </div>
+      <div *ngIf="hasExperience === 'no'">
+        <!-- Additional fields for education -->
+        <ion-item class="mb-2" lines="none">
+          <ion-label position="floating">Graduation Year</ion-label>
+          <ion-input type="text" name="graduationYear"
+            placeholder="Enter Graduation Year"
+            [(ngModel)]="graduationYear"></ion-input>
+        </ion-item>
+        <ion-item class="mb-2" lines="none">
+          <ion-label position="floating">College Name</ion-label>
+          <ion-input type="text" name="college" placeholder="Enter College Name"
+            [(ngModel)]="college"></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-item class="mb-2" lines="none">
+        <ion-label position="floating">Gap</ion-label>
+        <ion-select [(ngModel)]="gap" name="hasGap">
+          <ion-select-option value="yes">Yes</ion-select-option>
+
+          <ion-select-option value="no">No</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+      <div *ngIf="gap === 'yes'">
+        <ion-item class="mb-2" lines="none">
+          <ion-label position="floating">Details about gap</ion-label>
+          <ion-input type="text" name="gapDetails"
+            placeholder="Enter details about the gap"
+            [(ngModel)]="gapDetails"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="ion-text-center">
+        <ion-button expand="block" color="primary"
+          type="submit">Submit</ion-button>
+        <ion-button expand="block" color="primary"
+          type="reset">Reset</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

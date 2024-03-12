@@ -1,0 +1,12 @@
+.skills-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.skill {
+  border-bottom: 1px solid #ccc; /* Adjust padding as needed */
+}
+
+.skill:last-child {
+  border-bottom: none; /* Remove border from last item */
+}

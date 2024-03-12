@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { FormcComponent } from './formc/formc.component';
+import { FrontComponent } from './front/front.component';
+import { SuccessComponent } from './success/success.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { CandetailsComponent } from './candetails/candetails.component';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+
+  {path:'', component: FrontComponent},
+  {path:'front', component: FrontComponent},
+  {path:'formc', component: FormcComponent},
+  {path:'success', component: SuccessComponent},
+  {path:'admin', component: AdminComponent},
+  {path:'admin-panel', component: AdminPanelComponent},
+  { path: 'candetails', component: CandetailsComponent }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }, )
   ],
   exports: [RouterModule]
 })

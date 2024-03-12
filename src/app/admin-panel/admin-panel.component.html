@@ -1,0 +1,59 @@
+<ion-header class="flex items-center justify-between">
+  <!-- Logo -->
+  <ion-title>
+    <ion-img class="ml-0 w-12 h-12" src="assets/images/ct.png" alt=""></ion-img>
+  </ion-title>
+
+  <!-- Admin Panel Title -->
+  <ion-title>Admin Panel</ion-title>
+
+  <!-- Search Bar -->
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems($event)" class="small-search-bar"></ion-searchbar>
+
+</ion-header>
+
+<ion-content class="p-4">
+  <ion-grid>
+    <!-- Table headers -->
+    <ion-row class="font-semibold border-b border-gray-500">
+      <ion-col class="px-1 py-1">Name</ion-col>
+      <ion-col class="px-1 py-1">Contact Number</ion-col>
+
+      <ion-col class="px-1 py-1">Interview Date</ion-col>
+      <ion-col class="px-1 py-1">Status</ion-col>
+      <ion-col class="px-1 py-1">Comments</ion-col>
+
+      <ion-col class="px-1 py-1">Actions</ion-col>
+    </ion-row>
+
+    <!-- Table rows -->
+    <ion-list *ngIf="filteredData$ | async as data; else loading">
+      <ion-row *ngFor="let item of data, index as i" class="border-b border-gray-500">
+        <ion-col class="px-1 py-1">{{ item.name }}</ion-col>
+        <ion-col class="px-1 py-1">{{ item.contactNumber }}</ion-col>
+
+        <ion-col class="p-1">{{ item.date }}</ion-col>
+
+        <ion-col class="p-1">
+          <ion-select [(ngModel)]="item.status" (ionChange)="updateStatus(item, $event)" placeholder="--SELECT--">
+            <ion-select-option value="Selected">Selected</ion-select-option>
+            <ion-select-option value="Rejected">Rejected</ion-select-option>
+            <ion-select-option value="Will consider later">Will consider later</ion-select-option>
+            <ion-select-option value="Moved for second round">Moved for second round</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col class="p-1">
+          <ion-button color="primary" type="submit" (click)="addComment(item)">Add Comment</ion-button>
+        </ion-col>
+        <ion-col class="p-1">
+          <ion-button color="primary" (click)="viewDetails(item)">View</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </ion-grid>
+
+  <!-- Loading spinner -->
+  <ng-template #loading>
+    <ion-spinner></ion-spinner>
+  </ng-template>
+</ion-content>
