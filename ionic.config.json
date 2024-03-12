@@ -1,0 +1,7 @@
+{
+  "name": "Candidate-Registration-App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
